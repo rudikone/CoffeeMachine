@@ -50,6 +50,7 @@ public class CoffeeService {
         return words.length != 2
                 || words[0].isBlank()
                 || words[1].isBlank()
+                || !isNumeric(words[1])
                 || (Arrays.stream(CoffeeType.values()).noneMatch(e -> e.name().equals(words[0].toUpperCase()))
                 && Arrays.stream(CommandType.values()).noneMatch(e -> e.name().equals(words[0].toUpperCase())));
     }
@@ -135,6 +136,15 @@ public class CoffeeService {
             System.out.println("turn off...");
             System.out.println("bye-bye!");
             System.exit(0);
+        }
+    }
+
+    private boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 
